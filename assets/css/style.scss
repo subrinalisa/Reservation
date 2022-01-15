@@ -1,0 +1,472 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
+/*--------------------------------------------------------------------
+Global
+---------------------------------------------------------------------*/
+$text-color: #4c4c4c;
+$primary-color: #305EB2;
+$border: 1px solid #d5d5d5;
+$gradient: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+$gradient-reverse: linear-gradient(360deg, #2a2a72 0%, #009ffd 74%);
+
+@mixin fonts($size, $weight, $color) {
+    font-size: $size;
+    font-weight: $weight;
+    color: $color;
+}
+
+@mixin transition {
+    -moz-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+@mixin radius {
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    @include fonts(16px, 400, $text-color);
+    background: #fff;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 8px;
+}
+
+h1 {
+    font-size: 48px;
+}
+
+h2 {
+    font-size: 36px;
+}
+
+h3 {
+    font-size: 28px;
+}
+
+h4 {
+    font-size: 22px;
+}
+
+h5 {
+    font-size: 18px;
+}
+
+h6 {
+    font-size: 16px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure {
+    margin: 0;
+}
+
+small {
+    font-size: 12px;
+}
+
+a,
+a:hover {
+    color: $primary-color;
+    text-decoration: none;
+}
+
+i,
+svg {
+    display: inline-block;
+    pointer-events: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+ul,
+ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.btn {
+    font-family: 'Open Sans', sans-serif;
+    @include transition;
+}
+
+.btn:focus,
+.navbar-toggler:focus,
+.form-control:focus,
+.form-select:focus,
+.accordion-button:focus {
+    box-shadow: none;
+}
+
+.btn-primary {
+    background: $gradient;
+}
+
+.btn-primary:hover {
+    background: $gradient-reverse;
+}
+
+.btn-outline-primary:hover {
+    background: $gradient;
+}
+
+.form-check {
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+.text-primary {
+    color: $primary-color !important;
+}
+
+.border-primary {
+    border: 1px solid $primary-color !important;
+}
+
+/*--------------------------------------------------------------------
+Preloader
+---------------------------------------------------------------------*/
+#preloader {
+    background: #fff;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+}
+
+.loader-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.loader {
+    width: 84px;
+    height: 84px;
+    margin: 40px auto;
+    position: relative;
+}
+
+.loader .loader-inner {
+    width: 35px;
+    height: 8px;
+    border-radius: 4px;
+    background: $gradient;
+    position: absolute;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease;
+    animation-timing-function: ease;
+}
+
+.loader .loader-inner:nth-of-type(4n - 3) {
+    left: 24.5px;
+    -webkit-animation-name: loading1;
+    animation-name: loading1;
+}
+
+.loader .loader-inner:nth-of-type(3) {
+    left: 2px;
+}
+
+.loader .loader-inner:nth-of-type(7) {
+    right: 2px;
+}
+
+.loader .loader-inner:nth-of-type(4n-1) {
+    top: 24.5px;
+    width: 8px;
+    height: 35px;
+    -webkit-animation-name: loading1;
+    animation-name: loading1;
+}
+
+.loader .loader-inner:nth-of-type(5) {
+    bottom: 0;
+}
+
+.loader .loader-inner:nth-of-type(4n - 2) {
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-animation-name: loading2;
+    animation-name: loading2;
+}
+
+.loader .loader-inner:nth-of-type(2) {
+    top: 12px;
+}
+
+.loader .loader-inner:nth-of-type(6) {
+    bottom: 12px;
+    right: 0;
+}
+
+.loader .loader-inner:nth-of-type(4n) {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-animation-name: loading3;
+    animation-name: loading3;
+}
+
+.loader .loader-inner:nth-of-type(4) {
+    bottom: 12px;
+}
+
+.loader .loader-inner:nth-of-type(8) {
+    top: 12px;
+    right: 0;
+}
+
+@-webkit-keyframes loading1 {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes loading1 {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+}
+
+@-webkit-keyframes loading2 {
+    from {
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+
+    to {
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg);
+    }
+}
+
+@keyframes loading2 {
+    from {
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+
+    to {
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg);
+    }
+}
+
+@-webkit-keyframes loading3 {
+    from {
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
+    to {
+        -webkit-transform: rotate(225deg);
+        transform: rotate(225deg);
+    }
+}
+
+@keyframes loading3 {
+    from {
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
+    to {
+        -webkit-transform: rotate(225deg);
+        transform: rotate(225deg);
+    }
+}
+
+/*--------------------------------------------------------------------
+Header
+---------------------------------------------------------------------*/
+.wrapper {
+    margin: 30px 0;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    @include radius();
+}
+
+.header {
+    color: #fff;
+    text-align: center;
+    background: $gradient;
+    padding: 100px 0;
+    position: relative;
+    @include radius();
+
+    h1 {
+        font-family: 'Courgette', cursive;
+        @include fonts(93px, 400, #fff);
+        text-shadow: 2px 2px 4px #000000;
+        letter-spacing: 10px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+}
+
+.main {
+    padding: 0 30px 30px;
+
+    .input-group {
+        margin-top: -25px;
+    }
+}
+
+.invitees {
+    margin-top: 20px;
+}
+
+.single {
+    padding: 16px;
+    margin-top: 16px;
+    border: $border;
+    @include radius();
+
+    h3 {
+        @include fonts(20px, 500, $text-color);
+        text-transform: capitalize;
+    }
+
+    .form-check-label {
+        font-size: 12px;
+    }
+
+    .list-inline-item:not(:last-child) {
+        margin-right: 4px;
+    }
+
+    .form-check {
+        padding-left: 16px;
+    }
+}
+
+.no-invitee,
+.no-confirmed {
+    text-align: center;
+    margin-top: 20px;
+    display: none;
+
+    img {
+        animation: heartbeat 1.5s ease-in-out infinite both;
+    }
+
+    p {
+        margin-top: 8px;
+    }
+}
+
+@keyframes heartbeat {
+    from {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transform-origin: center center;
+        transform-origin: center center;
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+
+    10% {
+        -webkit-transform: scale(0.91);
+        transform: scale(0.91);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    17% {
+        -webkit-transform: scale(0.98);
+        transform: scale(0.98);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+
+    33% {
+        -webkit-transform: scale(0.87);
+        transform: scale(0.87);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    45% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+}
+
+.d-flex {
+    flex-wrap: wrap;
+}
+
+/*--------------------------------------------------------------------
+Responsive
+---------------------------------------------------------------------*/
+@media (max-width: 767.98px) {
+    .wrapper {
+        margin: 16px 0;
+    }
+
+    .main {
+
+        .form-control,
+        .btn {
+            font-size: 14px;
+        }
+    }
+}
